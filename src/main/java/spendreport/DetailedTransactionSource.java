@@ -8,13 +8,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class DetailedTransactionSource2 implements SourceFunction<DetailedTransaction> {
+public class DetailedTransactionSource implements SourceFunction<Transaction> {
 
     private boolean isRunning = true;
-    private List<String> zipCodes = new ArrayList<>(Arrays.asList("01003", "02115", "78712"));
+    private final List<String> zipCodes = new ArrayList<>(Arrays.asList("01003", "02115", "78712"));
 
     @Override
-    public void run(SourceContext<DetailedTransaction> ctx) throws Exception {
+    public void run(SourceContext<Transaction> ctx) throws Exception {
         while (isRunning) {
 
             Transaction transaction = new Transaction();
@@ -26,8 +26,9 @@ public class DetailedTransactionSource2 implements SourceFunction<DetailedTransa
             // Creating new DetailedTransaction class
             DetailedTransaction detailedTransaction = new DetailedTransaction(transaction, zipCode);
 
+//            System.out.println(detailedTransaction);
             // Collect the detailed transaction in the context
-            ctx.collect(detailedTransaction);
+            ctx.collect(transaction);
         }
     }
 

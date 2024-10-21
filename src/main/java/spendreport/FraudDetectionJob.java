@@ -32,12 +32,12 @@ public class FraudDetectionJob {
 	public static void main(String[] args) throws Exception {
 		StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
-		DataStream<DetailedTransaction> detailedTransactions = env
+		DataStream<Transaction> detailedTransactions = env
 			.addSource(new DetailedTransactionSource())
 			.name("detailedTransactions");
 
 		DataStream<Alert> alerts = detailedTransactions
-			.keyBy(DetailedTransaction::getAccountId)
+			.keyBy(Transaction::getAccountId)
 			.process(new FraudDetector())
 			.name("fraud-detector");
 

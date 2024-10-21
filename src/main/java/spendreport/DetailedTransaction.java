@@ -2,9 +2,10 @@ package spendreport;
 
 import org.apache.flink.walkthrough.common.entity.Transaction;
 
-public class DetailedTransaction {
+import java.io.Serializable;
 
-    private long accountId;
+public class DetailedTransaction {
+   private long accountId;
 
     private long timestamp;
 
@@ -49,5 +50,15 @@ public class DetailedTransaction {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    @Override
+    public String toString() {
+        return "DetailedTransaction{" +
+                "accountId='" + accountId + '\'' +
+                ", timestamp=" + timestamp +
+                ", amount=" + amount +
+                ", zipCode=" + zipCode +
+                '}';
     }
 }

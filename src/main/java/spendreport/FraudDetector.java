@@ -30,7 +30,7 @@ import org.apache.flink.walkthrough.common.entity.Transaction;
 /**
  * Skeleton code for implementing a fraud detector.
  */
-public class FraudDetector extends KeyedProcessFunction<Long, DetailedTransaction, Alert> {
+public class FraudDetector extends KeyedProcessFunction<Long, Transaction, Alert> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -54,7 +54,7 @@ public class FraudDetector extends KeyedProcessFunction<Long, DetailedTransactio
 
 	@Override
 	public void processElement(
-			DetailedTransaction detailedTransaction,
+			Transaction detailedTransaction,
 			Context context,
 			Collector<Alert> collector) throws Exception {
 
