@@ -20,7 +20,7 @@ public class DetailedTransaction {
         this.timestamp = timestamp;
         this.amount = amount;
         Random rand = new Random();
-        int[] zipCodes = {01003, 02115, 78712};
+        long[] zipCodes = {01003, 02115, 78712};
         int randomIndex = rand.nextInt(zipCodes.length);
         this.zipcode = zipCodes[randomIndex];
     }
