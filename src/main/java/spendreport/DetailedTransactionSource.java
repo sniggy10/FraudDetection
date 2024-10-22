@@ -1,39 +1,40 @@
 package spendreport;
 
-import org.apache.flink.streaming.api.functions.source.SourceFunction;
-import org.apache.flink.walkthrough.common.entity.Transaction;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import org.apache.flink.streaming.api.functions.source.FromIteratorFunction;
+import java.io.Serializable;
+import java.util.Iterator;
 
-public class DetailedTransactionSource implements SourceFunction<Transaction> {
 
-    private boolean isRunning = true;
-    private final List<String> zipCodes = new ArrayList<>(Arrays.asList("01003", "02115", "78712"));
+public class DetailedTransactionSource extends FromIteratorFunction<DetailedTransaction> {
+    private static final long serialVersionUID = 1L;
 
-    @Override
-    public void run(SourceContext<Transaction> ctx) throws Exception {
-        while (isRunning) {
-
-            Transaction transaction = new Transaction();
-            Random random = new Random();
-
-            // Getting a random zip code to add to Transaction class
-            String zipCode = zipCodes.get(random.nextInt(zipCodes.size()));
-
-            // Creating new DetailedTransaction class
-            DetailedTransaction detailedTransaction = new DetailedTransaction(transaction, zipCode);
-
-//            System.out.println(detailedTransaction);
-            // Collect the detailed transaction in the context
-            ctx.collect(transaction);
-        }
+    public DetailedTransactionSource() {
+        super(new RateLimitedIterator<>(DetailedTransactionIterator.unbounded()));
     }
 
-    @Override
-    public void cancel() {
-        isRunning = false;
+    private static class RateLimitedIterator<T> implements Iterator<T>, Serializable {
+        private static final long serialVersionUID = 1L;
+        private final Iterator<T> inner;
+
+        private RateLimitedIterator(Iterator<T> inner) {
+            this.inner = inner;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return this.inner.hasNext();
+        }
+
+        @Override
+        public T next() {
+            try {
+                Thread.sleep(100L);
+            } catch (InterruptedException var2) {
+                throw new RuntimeException(var2);
+            }
+
+            return this.inner.next();
+        }
     }
 }

@@ -1,35 +1,32 @@
 package spendreport;
 
-import org.apache.flink.walkthrough.common.entity.Transaction;
-
-import java.io.Serializable;
+import java.util.Objects;
+import java.util.Random;
 
 public class DetailedTransaction {
-   private long accountId;
+
+    private long accountId;
 
     private long timestamp;
 
     private double amount;
 
-    private String zipCode;
+    private long zipcode;
 
-    public DetailedTransaction(Transaction transaction, String zipCode) {
-        this.zipCode = zipCode;
-        this.accountId = transaction.getAccountId();
-        this.timestamp = transaction.getTimestamp();
-        this.amount = transaction.getAmount();
+    public DetailedTransaction() {
     }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
+    public DetailedTransaction(long accountId, long timestamp, double amount) {
+        this.accountId = accountId;
+        this.timestamp = timestamp;
+        this.amount = amount;
+        Random rand = new Random();
+        int[] zipCodes = {01003, 02115, 78712};
+        int randomIndex = rand.nextInt(zipCodes.length);
+        this.zipcode = zipCodes[randomIndex];
     }
 
     public long getAccountId() {
-        return accountId;
+        return this.accountId;
     }
 
     public void setAccountId(long accountId) {
@@ -37,7 +34,7 @@ public class DetailedTransaction {
     }
 
     public long getTimestamp() {
-        return timestamp;
+        return this.timestamp;
     }
 
     public void setTimestamp(long timestamp) {
@@ -45,20 +42,40 @@ public class DetailedTransaction {
     }
 
     public double getAmount() {
-        return amount;
+        return this.amount;
     }
 
     public void setAmount(double amount) {
         this.amount = amount;
     }
 
-    @Override
+    public long getZipcode() {
+        return this.zipcode;
+    }
+
+    public void setZipcode(long zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        } else if (o == null && this.getClass() != o.getClass()) {
+            return false;
+        } else {
+            DetailedTransaction that = (DetailedTransaction)o;
+            return this.accountId == that.accountId
+                    && this.timestamp == that.timestamp
+                    && Double.compare(that.amount, this.amount) == 0
+                    && this.zipcode == that.zipcode;
+        }
+    }
+
+    public int hashCode() {
+        return Objects.hash(new Object[]{this.accountId, this.timestamp, this.amount, this.zipcode});
+    }
+
     public String toString() {
-        return "DetailedTransaction{" +
-                "accountId='" + accountId + '\'' +
-                ", timestamp=" + timestamp +
-                ", amount=" + amount +
-                ", zipCode=" + zipCode +
-                '}';
+        return "Transaction{accountId=" + this.accountId + ", timestamp=" + this.timestamp + ", amount=" + this.amount + ", zipcode=" + this.zipcode + '}';
     }
 }

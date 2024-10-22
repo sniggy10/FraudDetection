@@ -7,7 +7,7 @@ import java.util.Objects;
 public class DetailedAlert {
 
     private long id;
-    private String zipCode;
+    private long zipCode;
 
     public long getId() {
         return id;
@@ -17,11 +17,11 @@ public class DetailedAlert {
         this.id = id;
     }
 
-    public String getZip() {
+    public long getZip() {
         return zipCode;
     }
 
-    public void setZip(String zipCode) {
+    public void setZip(long zipCode) {
         this.zipCode = zipCode;
     }
 
