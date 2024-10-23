@@ -15,14 +15,11 @@ public class DetailedTransaction {
 
     public DetailedTransaction() {
     }
-    public DetailedTransaction(long accountId, long timestamp, double amount) {
+    public DetailedTransaction(long accountId, long timestamp, double amount, String zipcode) {
         this.accountId = accountId;
         this.timestamp = timestamp;
         this.amount = amount;
-        Random rand = new Random();
-        String[] zipCodes = {"01003", "02115", "78712"};
-        int randomIndex = rand.nextInt(zipCodes.length);
-        this.zipcode = zipCodes[randomIndex];
+        this.zipcode = zipcode;
     }
 
     public long getAccountId() {
