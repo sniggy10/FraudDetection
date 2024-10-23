@@ -1,7 +1,5 @@
 package spendreport.detailed;
 
-import org.apache.flink.streaming.api.datastream.DataStream;
-import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.sink.SinkFunction;
 
 import org.slf4j.Logger;

@@ -47,15 +47,10 @@ public class DetailedAlert {
 
     @Override
     public String toString() {
-        return
-//        "DetailedAlert{" +
-                this.message;
-//                + "id=" + id
-//                + ", zip code=" +zipCode
-//                + '}';
+        return this.message;
     }
 
-    // This message is set for getting the alert for fraudalent transactions.
+    // This message is set for getting the alert for fraudulent transactions.
     // It is set in DetailedFraudDetector.java class.
     public void setMessage(String message) {
         this.message = message;

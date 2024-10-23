@@ -19,8 +19,8 @@ public class DetailedTransactionIterator implements Iterator<DetailedTransaction
 
     private long timestamp;
 
-    // Setting the defined zipcodes given in the question into 3 variables
-    // which are below later then uniformly randomly set across different Transaction details.
+    /* Setting the defined zipcodes given in the question into 3 variables
+     which are later uniformly randomly set across different Transaction details. */
     private static String zipcode_1 = "01003";
 
     private static String zipcode_2 = "02115";

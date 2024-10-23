@@ -1,7 +1,6 @@
 package spendreport.detailed;
 
 import java.util.Objects;
-import java.util.Random;
 
 public class DetailedTransaction {
 
