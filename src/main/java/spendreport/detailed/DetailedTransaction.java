@@ -11,10 +11,12 @@ public class DetailedTransaction {
 
     private double amount;
 
+    // Adding the zipcode detail to the class
     private String zipcode;
 
     public DetailedTransaction() {
     }
+
     public DetailedTransaction(long accountId, long timestamp, double amount, String zipcode) {
         this.accountId = accountId;
         this.timestamp = timestamp;

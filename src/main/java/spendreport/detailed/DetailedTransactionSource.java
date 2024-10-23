@@ -6,7 +6,7 @@ import org.apache.flink.streaming.api.functions.source.FromIteratorFunction;
 import java.io.Serializable;
 import java.util.Iterator;
 
-
+// This class sources the Detailed Transactions class.
 public class DetailedTransactionSource extends FromIteratorFunction<DetailedTransaction> {
     private static final long serialVersionUID = 1L;
 

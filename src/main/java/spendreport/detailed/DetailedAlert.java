@@ -5,7 +5,12 @@ import java.util.Objects;
 public class DetailedAlert {
 
     private long id;
+
+    // Adding the zipcode of the alleged fraudulent activity.
     private String zipCode;
+
+    // This sets the format of the alert message we want to generate and display for the user.
+    private String message;
 
     public long getId() {
         return id;
@@ -15,10 +20,12 @@ public class DetailedAlert {
         this.id = id;
     }
 
+    // Get function for the zipcode of the alleged fraudulent activity.
     public String getZip() {
         return zipCode;
     }
 
+    // Set function for the zipcode of the alleged fraudulent activity.
     public void setZip(String zipCode) {
         this.zipCode = zipCode;
     }
@@ -40,10 +47,19 @@ public class DetailedAlert {
 
     @Override
     public String toString() {
-        return "Alert{"
-                + "id=" + id
-                + ", zip code=" +zipCode
-                + '}';
+        return
+//        "DetailedAlert{" +
+                this.message;
+//                + "id=" + id
+//                + ", zip code=" +zipCode
+//                + '}';
     }
+
+    // This message is set for getting the alert for fraudalent transactions.
+    // It is set in DetailedFraudDetector.java class.
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
 }
 

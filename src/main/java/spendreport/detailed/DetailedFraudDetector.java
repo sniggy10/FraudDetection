@@ -13,7 +13,8 @@ import org.apache.flink.util.Collector;
 public class DetailedFraudDetector extends KeyedProcessFunction<Long, DetailedTransaction, DetailedAlert> {
 
     private static final long serialVersionUID = 1L;
-
+    // Updating the small_amount value to a larger value to
+    // generate alerts for fraudalent transactions accordingly.
     private static final double SMALL_AMOUNT = 20.00;
     private static final double LARGE_AMOUNT = 200.00;
     private static final long ONE_MINUTE = 60 * 1000;
@@ -38,6 +39,9 @@ public class DetailedFraudDetector extends KeyedProcessFunction<Long, DetailedTr
         zipcodeState = getRuntimeContext().getState(zipcodeDescriptor);
     }
 
+    // Updating the Transaction and Alert class to
+    // DetailedTransaction and DetailedAlert class to accomodate the
+    // zipcode addition and log the alerts for fraudalent transactions.
     @Override
     public void processElement(
             DetailedTransaction detailedTransaction,
@@ -52,9 +56,15 @@ public class DetailedFraudDetector extends KeyedProcessFunction<Long, DetailedTr
             if (detailedTransaction.getAmount() > LARGE_AMOUNT) {
                 // Output an alert downstream if zip code of small transaction is equal to zipcode of large transaction
                 if (detailedTransaction.getZipcode().equalsIgnoreCase(zipcodeState.value())) {
+                    // Use the new DetailedAlert class
                     DetailedAlert detailedAlert = new DetailedAlert();
+                    // Set the Detailed alert class parameters by getting their values from DetailedTransaction class.
                     detailedAlert.setId(detailedTransaction.getAccountId());
                     detailedAlert.setZip(detailedTransaction.getZipcode());
+                    // Setting the Alert message which will be displayed to the user.
+                    detailedAlert.setMessage(String.format("Alert! Details: AccountId: %d , Amount: %.4f , Timestamp: %d , ZipCode %s"
+                            , detailedTransaction.getAccountId(), detailedTransaction.getAmount(), detailedTransaction.getTimestamp() , detailedTransaction.getZipcode()));
+
                     collector.collect(detailedAlert);
                 }
             }

@@ -19,6 +19,8 @@ public class DetailedTransactionIterator implements Iterator<DetailedTransaction
 
     private long timestamp;
 
+    // Setting the defined zipcodes given in the question into 3 variables
+    // which are below later then uniformly randomly set across different Transaction details.
     private static String zipcode_1 = "01003";
 
     private static String zipcode_2 = "02115";
@@ -58,6 +60,8 @@ public class DetailedTransactionIterator implements Iterator<DetailedTransaction
         return transaction;
     }
 
+    // Designing the list of Transactions with each Transaction containing accountid, timestamp, amount and zipcode.
+    // The zipcodes have been uniformly randomly set across different transactions.
     private static List<DetailedTransaction> data =
             Arrays.asList(
                     new DetailedTransaction(1, 0L, 18.23, zipcode_2),
