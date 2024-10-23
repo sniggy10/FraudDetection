@@ -1,7 +1,8 @@
-package spendreport;
+package spendreport.detailed;
 
 
 import org.apache.flink.streaming.api.functions.source.FromIteratorFunction;
+
 import java.io.Serializable;
 import java.util.Iterator;
 

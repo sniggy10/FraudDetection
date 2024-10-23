@@ -1,4 +1,4 @@
-package spendreport;
+package spendreport.detailed;
 
 import java.util.Objects;
 import java.util.Random;
@@ -11,7 +11,7 @@ public class DetailedTransaction {
 
     private double amount;
 
-    private long zipcode;
+    private String zipcode;
 
     public DetailedTransaction() {
     }
@@ -20,7 +20,7 @@ public class DetailedTransaction {
         this.timestamp = timestamp;
         this.amount = amount;
         Random rand = new Random();
-        long[] zipCodes = {01003, 02115, 78712};
+        String[] zipCodes = {"01003", "02115", "78712"};
         int randomIndex = rand.nextInt(zipCodes.length);
         this.zipcode = zipCodes[randomIndex];
     }
@@ -49,11 +49,11 @@ public class DetailedTransaction {
         this.amount = amount;
     }
 
-    public long getZipcode() {
+    public String getZipcode() {
         return this.zipcode;
     }
 
-    public void setZipcode(long zipcode) {
+    public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
     }
 
@@ -67,7 +67,7 @@ public class DetailedTransaction {
             return this.accountId == that.accountId
                     && this.timestamp == that.timestamp
                     && Double.compare(that.amount, this.amount) == 0
-                    && this.zipcode == that.zipcode;
+                    && this.zipcode.equalsIgnoreCase(that.zipcode);
         }
     }
 

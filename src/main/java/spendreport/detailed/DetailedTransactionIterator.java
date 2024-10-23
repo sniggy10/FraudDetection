@@ -1,4 +1,4 @@
-package spendreport;
+package spendreport.detailed;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -73,11 +73,11 @@ public class DetailedTransactionIterator implements Iterator<DetailedTransaction
                     new DetailedTransaction(1, 0L, 419.62),
                     new DetailedTransaction(2, 0L, 412.91),
                     new DetailedTransaction(3, 0L, 0.77),
-                    new DetailedTransaction(4, 0L, 22.10),
+                    new DetailedTransaction(4, 0L, 22.1),
                     new DetailedTransaction(5, 0L, 377.54),
                     new DetailedTransaction(1, 0L, 375.44),
                     new DetailedTransaction(2, 0L, 230.18),
-                    new DetailedTransaction(3, 0L, 0.80),
+                    new DetailedTransaction(3, 0L, 0.8),
                     new DetailedTransaction(4, 0L, 350.89),
                     new DetailedTransaction(5, 0L, 127.55),
                     new DetailedTransaction(1, 0L, 483.91),
@@ -95,7 +95,7 @@ public class DetailedTransactionIterator implements Iterator<DetailedTransaction
                     new DetailedTransaction(3, 0L, 119.92),
                     new DetailedTransaction(4, 0L, 323.59),
                     new DetailedTransaction(5, 0L, 353.16),
-                    new DetailedTransaction(1, 0L, 211.90),
+                    new DetailedTransaction(1, 0L, 211.9),
                     new DetailedTransaction(2, 0L, 280.93),
                     new DetailedTransaction(3, 0L, 347.89),
                     new DetailedTransaction(4, 0L, 459.86),

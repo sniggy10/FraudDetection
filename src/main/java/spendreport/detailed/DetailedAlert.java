@@ -1,13 +1,11 @@
-package spendreport;
-
-import org.apache.flink.walkthrough.common.entity.Alert;
+package spendreport.detailed;
 
 import java.util.Objects;
 
 public class DetailedAlert {
 
     private long id;
-    private long zipCode;
+    private String zipCode;
 
     public long getId() {
         return id;
@@ -17,15 +15,14 @@ public class DetailedAlert {
         this.id = id;
     }
 
-    public long getZip() {
+    public String getZip() {
         return zipCode;
     }
 
-    public void setZip(long zipCode) {
+    public void setZip(String zipCode) {
         this.zipCode = zipCode;
     }
 
-    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -33,10 +30,10 @@ public class DetailedAlert {
             return false;
         }
         DetailedAlert detailedAlert = (DetailedAlert) o;
-        return id == detailedAlert.getId();
+        return id == detailedAlert.getId()
+                && zipCode.equalsIgnoreCase(detailedAlert.getZip());
     }
 
-    @Override
     public int hashCode() {
         return Objects.hash(id);
     }
