@@ -15,8 +15,8 @@ public class DetailedFraudDetector extends KeyedProcessFunction<Long, DetailedTr
     private static final long serialVersionUID = 1L;
     /* Updating the small_amount value to a larger value to
     generate alerts for fraudulent transactions accordingly. */
-    private static final double SMALL_AMOUNT = 20.00;
-    private static final double LARGE_AMOUNT = 200.00;
+    private static final double SMALL_AMOUNT = 10.00;
+    private static final double LARGE_AMOUNT = 500.00;
     private static final long ONE_MINUTE = 60 * 1000;
     private transient ValueState<Boolean> flagState;
     private transient ValueState<Long> timerState;
